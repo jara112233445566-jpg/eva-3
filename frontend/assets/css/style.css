@@ -1,0 +1,41 @@
+/* style.css - estilos propios; evita sobrescribir .container de Bootstrap */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding-top: 0;
+}
+
+/* Carousel card content */
+.carousel-item .card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Cards Section (grid) */
+#cardsContainer .ability-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+/* Small title styles */
+.class-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* habilidad name */
+.habilidad-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* No coincidencias */
+.no-results {
+  color: #b02a37;
+  font-weight: 600;
+}
