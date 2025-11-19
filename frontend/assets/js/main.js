@@ -11,7 +11,7 @@ async function fetchData() {
   }
 }
 
-// ----- RENDER ALL CARDS -----
+// ----- RENDER CARDS -----
 function renderAllCards(data) {
   const cont = document.getElementById('cardsContainer');
   cont.innerHTML = '';
