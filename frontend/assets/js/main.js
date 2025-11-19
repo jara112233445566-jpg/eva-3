@@ -143,7 +143,7 @@ function renderSearchResults(results, rawQuery) {
   container.appendChild(row);
 }
 
-// ----- EVENTOS BUSCADOR -----
+// -----dom -----
 document.addEventListener('DOMContentLoaded', () => {
   fetchData();
 
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Barra del navbar usa mismo comportamiento
+  // Barra del navbar mismo comportamiento
   navSearchBtn.addEventListener('click', () => {
     const q = navSearch.value;
     const res = searchAll(q);
@@ -181,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Contact form (solo demo: muestra alerta y limpia)
   const contactForm = document.getElementById('contactForm');
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
