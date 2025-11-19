@@ -1,78 +1,14 @@
-// main.js
-// Carga los datos, construye el carousel, el buscador y las cards
-
-let clasesConHabilidades = []; // estructura: [{id_clase, nombre_clase, habilidades: [{...}]}]
+let clasesConHabilidades = []; // sacar datos 
 
 async function fetchData() {
   try {
     const res = await fetch('/api/clases-con-habilidades');
     clasesConHabilidades = await res.json();
-    renderCarousel(clasesConHabilidades);
     renderAllCards(clasesConHabilidades);
   } catch (err) {
     console.error('Error cargando datos:', err);
     document.getElementById('cardsContainer').innerHTML = '<p class="text-danger">Error cargando datos del servidor.</p>';
   }
-}
-
-// ----- RENDER CAROUSEL -----
-function renderCarousel(data) {
-  const indicators = document.getElementById('carouselIndicators');
-  const inner = document.getElementById('carouselInner');
-  indicators.innerHTML = '';
-  inner.innerHTML = '';
-
-  if (!data || data.length === 0) {
-    inner.innerHTML = `<div class="carousel-item active"><div class="d-flex justify-content-center align-items-center" style="height:200px;"><div class="text-center"><h4>No hay clases</h4></div></div></div>`;
-    return;
-  }
-
-  data.forEach((cls, idx) => {
-    // Indicator
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.setAttribute('data-bs-target', '#infoCarousel');
-    btn.setAttribute('data-bs-slide-to', String(idx));
-    if (idx === 0) btn.classList.add('active');
-    indicators.appendChild(btn);
-
-    // Item
-    const item = document.createElement('div');
-    item.className = 'carousel-item' + (idx === 0 ? ' active' : '');
-
-    const card = document.createElement('div');
-    card.className = 'card p-3';
-
-    const body = document.createElement('div');
-    body.className = 'card-body text-center';
-
-    const title = document.createElement('h3');
-    title.textContent = cls.nombre_clase;
-
-    const list = document.createElement('div');
-    list.className = 'mt-3 text-start';
-
-    if (cls.habilidades && cls.habilidades.length) {
-      cls.habilidades.forEach(h => {
-        const hName = document.createElement('h6');
-        hName.className = 'habilidad-name';
-        hName.textContent = h.nombre_habilidad;
-        const p = document.createElement('p');
-        p.style.marginBottom = '12px';
-        p.textContent = h.descripcion_habilidad;
-        list.appendChild(hName);
-        list.appendChild(p);
-      });
-    } else {
-      list.innerHTML = '<p>No hay habilidades para esta clase.</p>';
-    }
-
-    body.appendChild(title);
-    body.appendChild(list);
-    card.appendChild(body);
-    item.appendChild(card);
-    inner.appendChild(item);
-  });
 }
 
 // ----- RENDER ALL CARDS -----

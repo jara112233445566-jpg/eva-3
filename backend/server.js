@@ -1,26 +1,12 @@
-// server.js
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const path = require('path');
-const livereload = require('livereload');
-const connectLiveReload = require('connect-livereload');
 
 const app = express();
 const port = 3000;
 
-// --- RUTA CORRECTA AL FRONTEND ---
 const FRONTEND_PATH = path.join(__dirname, '..', 'frontend');
-
-// --- LiveReload (opcional) ---
-const liveReloadServer = livereload.createServer({ port: 35729 });
-liveReloadServer.watch(FRONTEND_PATH);  // ahora apunta al frontend real
-app.use(connectLiveReload());
-
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => liveReloadServer.refresh("/"), 100);
-});
-
 // --- Middlewares ---
 app.use(cors());
 app.use(express.json());
